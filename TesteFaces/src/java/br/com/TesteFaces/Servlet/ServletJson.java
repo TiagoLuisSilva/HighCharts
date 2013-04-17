@@ -75,17 +75,8 @@ public class ServletJson extends HttpServlet {
             throws IOException, ServletException {
         
         try {
-             
-           /* String parametro1 = request.getParameter("param");
-            int[] qtds = {3, 2, 5};
-            List<Frutas1> frutas = new ArrayList<Frutas1>();
-            Frutas1 fruta = new Frutas1("Banana", qtds);
-            frutas.add(fruta); 
-            fruta = new Frutas1("Maça", new int[]{3,2,9});
-            frutas.add(fruta);
-            fruta = new Frutas1("Uva", new int[]{9,5,7});
-            frutas.add(fruta);*/
-               FrutasDAO fd = new FrutasDAO(); 
+      
+            FrutasDAO fd = new FrutasDAO(); 
             List<Frutas> lfrutas = fd.ListarFrutas(); 
            
             Gson gson = new Gson();
