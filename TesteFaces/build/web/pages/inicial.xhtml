@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"> 
+    <body>
+
+        <div>Pagina Inicial</div>
+        
+        <h:form>    
+            <p:growl id="messages" showDetail="true" />  
+             
+            <p:ajaxStatus style="width:16px;height:16px;">  
+                <f:facet name="start">   
+                </f:facet>  
+
+                <f:facet name="complete">  
+                    <h:outputText value="" />  
+                </f:facet>  
+            </p:ajaxStatus>  
+            <p:tree value="#{treeBean.root}" var="doc">
+                <p:treeNode expandedIcon="ui-icon-folder-open"
+                            collapsedIcon="ui-icon ui-icon-folder-collapsed">
+                    <h:outputText value="#{doc}"/>
+                </p:treeNode>
+                <p:treeNode type="document" icon="ui-icon ui-icon-document">
+                    <h:outputText value="#{doc}" />
+                </p:treeNode>
+                <p:treeNode type="picture" icon="ui-icon ui-icon-image">
+                    <h:outputText value="#{doc}" />
+                </p:treeNode>
+                <p:treeNode type="mp3" icon="ui-icon ui-icon-video">
+                    <h:outputText value="#{doc}" />
+                </p:treeNode>
+            </p:tree>
+
+            <p:commandButton value="Display Selected" update="messages"  
+                             style="margin:20px 0 20px 0;"  
+                             actionListener="#{treeBean.displaySelectedSingle()}" />  
+            
+            
+        </h:form>  
+        <p:dialog visible="true" style="top:30px;right:5px;">assas</p:dialog>
+
+    </body>
+</html>

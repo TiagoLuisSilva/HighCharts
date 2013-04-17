@@ -1,0 +1,49 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<link type="text/css" rel="stylesheet" href="themes/bluesky/skin.css" />
+</h:head> 
+   
+<h:body>
+
+    <p:dialog id="dialog" header="Login" widgetVar="dlg" visible="true"  resizable="false" draggable="false" closable="false">  
+    <h:form id="growl">   
+        <h:panelGrid columns="2" cellpadding="5">  
+            <h:outputLabel for="username" value="Username:" />              
+            
+ 
+            <p:inputText value="#{loginMB.user.usuario}"   
+                    id="username"  required="true" >  
+            </p:inputText>           
+              
+            <h:outputLabel for="password" value="Password:" />  
+            <h:inputSecret value="#{loginMB.user.senha}"
+                           required="true"   id="password"  />  
+              
+            <f:facet name="footer">  
+                <p:commandButton id="loginButton" value="Login"   type="submit"
+                                 actionListener="#{loginMB.login}"   
+                                 oncomplete="handleLoginRequest(xhr, status, args)"  />  
+            </f:facet>  
+        </h:panelGrid>  
+    </h:form>   
+</p:dialog>  
+<script type="text/javascript">  
+    function handleLoginRequest(xhr, status, args) {  
+        var varr = args.chartdata;
+        alert(varr);
+        if(args.validationFailed || !args.loggedIn) {  
+            jQuery('#dialog').effect("shake", { times:3 }, 100);  
+            
+        } else {  
+            dlg.hide();  
+            jQuery('#loginLink').fadeOut();  
+        }  
+    }  
+</script>  
+</h:body>
+</html>

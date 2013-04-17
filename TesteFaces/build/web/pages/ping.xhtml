@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Operacao</title>v
+        <script type="text/javascript" src="js/highcharts.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        
+            <script type="text/javascript">
+                var chart1
+            $(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+      chart: {
+         renderTo: 'graphDiv',
+         defaultSeriesType: 'bar'
+      },
+      title: {
+         text: 'Fruit Consumption'
+      },
+      xAxis: {
+         categories: ['Apples', 'Bananas', 'Oranges']
+      },
+      yAxis: {
+         title: {
+            text: 'Fruit eaten'
+         }
+      },
+      series: [{
+         name: 'Anne',
+         data: [1, 0, 4]
+      }, {
+         name: 'Martin',
+         data: [5, 7, 3]
+      }]
+   });
+});
+</script>
+        
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:panel id="panel" header="Teste de Ping de destino" style="margin-bottom:10px;">  
+                <p:messages id="messages" />  
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="testeping" value="Informe o destino: *" />  
+                    <p:inputText id="testeping"   
+                                 value="#{pingHosts.testeping}" required="true" label="Testeping">  
+                        <f:validateLength minimum="2" />  
+                    </p:inputText>  
+                    <p:message for="testeping" /> 
+
+                    <p:commandButton value="Pingar" action="#{pingHosts.testaPingHosts()}" update="messages,saidacom"
+                                     icon="ui-icon-disk" title="Icon Only2" /> 
+
+                    <h:panelGrid columns="2">  
+                        <h:outputText value="Teste de Saida: " />  
+                        <h:outputText value="#{pingHosts.testeping}" />
+                    </h:panelGrid>
+                </h:panelGrid> 
+
+                <p:panel id="display" header="Saida" style="margin-top:10px;">  
+                    <h:panelGrid columns="2">   
+                        <p:inputTextarea readonly="true" id="saidacom" value="#{pingHosts.saida}" style="width: 1000px; height: 300px; " autoResize="true">
+                           
+                              
+                              
+                        </p:inputTextarea>
+                    </h:panelGrid>
+                </p:panel> 
+            </p:panel>
+            
+            <div id="graphDiv"/>
+        </h:form> 
+    </h:body>
+</html>

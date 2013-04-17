@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head> 
+    </h:head> 
+
+    <ui:composition template="/pages/Layout.xhtml">   
+        <ui:define  name="Logado" >    
+            <h:body onload="#{userMB.usuarioLogado()}">
+                <h:form id="growl1">   
+                    <ui:include src="/pages/page2.xhtml"/>   
+                </h:form>
+            </h:body> 
+        </ui:define> 
+
+        <ui:define  name="Menus" >  
+            <h:form id="menus">
+                <p:accordionPanel>  
+                    <p:tab title="Menu I"> 
+                        <p:commandLink id="cad1" value="Cadastro" action="#{navegacaoMB.setPagina1()}" update=":formconteudo:carPanel" >
+
+                        </p:commandLink> 
+                        <br/>
+                        <p:commandLink id="cad2" value="Pedido"   action="#{navegacaoMB.setPagina2()}" update=":formconteudo:carPanel"  />  
+                    </p:tab>
+                    <p:tab title="Menu II">
+                    </p:tab>
+                    <p:tab title="Menu III">
+                    </p:tab>
+                </p:accordionPanel>
+            </h:form>
+        </ui:define> 
+
+        <ui:define  name="Conteudo" >     
+            <h:body onload="#{userMB.usuarioLogado()}">
+                <h:form id="formconteudo" >  
+                <p:commandButton id="carBtn" value="Dynamic" type="button" />  
+                 <p:overlayPanel id="carPanel" for="carBtn" hideEffect="fade" dynamic="true">   
+                        <h:outputLabel value="#{navegacaoMB.url}"/>
+
+                        <p:commandLink id="ajax" actionListener="#{navegacaoMB.mudapagina()}" style="margin-right:20px;">  
+                            <h:outputText value="Pagina 1" />  
+                        </p:commandLink>  
+                        <p:commandLink oncomplete="#{navegacaoMB.setPagina1()}" value="pagina 1" update=":formconteudo:conteudopanel" />
+                        <ui:include src="#{navegacaoMB.url}" id="includconteudo"/> 
+                    </p:overlayPanel>
+                </h:form>
+            </h:body> 
+        </ui:define> 
+    </ui:composition>  
+</html>

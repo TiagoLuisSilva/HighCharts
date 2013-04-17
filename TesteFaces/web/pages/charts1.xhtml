@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head onload="#{chartController.geravalores()}">
+
+        <script type="text/javascript" src="../jquery.js"></script>
+        <script type="text/javascript" src="../js/underscore-min.js"></script>
+
+        <script type="text/javascript" > 
+            <!--
+            
+             
+            
+            var chart1; 
+            
+            jQuery(document).ready(function() {
+                $.getJSON('http://localhost:8080/ServletJson',{param:"aaa"}, function(json) {
+                     
+                   
+                    var dados = [];
+                    
+                    var fruta;  
+                    var qtd;  
+                  
+             
+                    
+                    var options = {
+                        chart: {
+                            renderTo: 'graphDiv',
+                            defaultSeriesType: 'bar'
+                        },
+                        title: {
+                            text: 'Consumo de Frutas'
+                        },
+                        xAxis: {
+                            categories: ["Tiago", "Rond","Weder"]
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Frutas consumidas'
+                            }
+                        },
+                        series: [],
+                        plotOptions: {
+                            series: { 
+                                groupPadding: 0.3
+                            }
+                        }
+                       
+                    }   
+                    for(var i=0; i< json.length;i++){ 
+                         
+                    
+                    options.series.push({ 
+                        "name": json[i].fruta,
+                        "data": json[i].qtd
+                
+                    })}
+                
+                    grafico = new Highcharts.Chart(options);   
+                }); 
+                 
+            });
+            function geradata(){
+                chart1.series[0].setData([3,6,4]);
+            
+              
+            }
+            
+            //--> 
+        </script> 
+    </head>
+
+
+    <h:body id="body" >
+
+        <form id="form">  
+            <script type="text/javascript" src="../js/highcharts.js"></script>
+            <script type="text/javascript" src="../js/modules/exporting.js"></script>
+            <div id="graphDiv"></div> 
+
+            <p:commandButton id="loginButton" value="Login"    
+                             oncomplete="geradata()" ajax="true" />  
+
+
+        </form>
+
+    </h:body>
+</html>

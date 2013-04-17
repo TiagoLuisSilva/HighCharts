@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+   
+    <h:body>
+    <h:form>   
+        <table>
+            <tr>
+                <td colspan="100">
+                    <img src="/imagens/Banner.png"/>
+                </td>
+                <td>
+                    <table border="2">
+                        <tr>
+                            <td align="center" >
+                                
+                    <h:outputLabel value="Bem Vindo #{userMB.user.nomeusu}" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p:commandButton id="btlogout" value="Logoff" action="#{userMB.logOut()}" ajax="false" style="width: 100px; margin-bottom: 10px;" />
+                            </td>
+                        </tr>   
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </h:form>
+    </h:body> 
+        
+</html> 

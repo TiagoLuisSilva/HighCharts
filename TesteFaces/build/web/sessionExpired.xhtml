@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Refresh" content= "15; URL=#{facesContext.externalContext.requestContextPath}/login.xhtml"/>
+		
+		<!-- restante do meu head -->
+	</head>
+
+	<body>
+		<div id="conteudoLogin">
+			<div class="divMensagensErro">
+				<ul class="mensagensErro">
+					<li>Sessão expirada.</li>
+				</ul>
+			</div>
+			
+			<div class="explicacaoErro">
+				<p>Sua sessão na aplicação expirou e um novo login precisa ser feito. Sua sessão pode ter expirado por duas razôes:</p>
+				<p>1. Você passou mais do que 20 minutos sem interagir com a aplicação;</p>
+				<p>2. Você utilizou algumas vezes o botão "voltar" do seu browser.</p>
+				<p>Você será automaticamente redirecionado para um novo login em 15 segundos ou, se preferir, clique <a href="#{facesContext.externalContext.requestContextPath}/pages/login.xhtml">aqui</a> para ser redirecionado agora.</p>
+			</div>
+		</div>
+	</body>	
+</html>

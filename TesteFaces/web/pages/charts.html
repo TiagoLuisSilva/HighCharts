@@ -1,0 +1,31 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>   
+
+        <script type="text/javascript" src="../jquery-1.6.2.min.js"></script>
+
+        <script type="text/javascript">  
+           
+            $.getJSON('http://localhost:8080/ServletJson', function(data) {
+                 
+                    alert(data.fruta);
+                    alert(data.qtd);
+                
+            });
+                      
+        </script> 
+    </head>
+    <body>
+        <script type="text/javascript" src="../js/highcharts.js"></script>
+        <script type="text/javascript" src="../js/modules/exporting.js"></script>
+
+        aaaa
+        <form>
+            <input type="button" value="aaaaaaaa" onclick="aaa()"  />
+        </form>
+    </body>
+</html>
