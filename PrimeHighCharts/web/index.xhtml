@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces - ShowCase</title>
+            </f:facet>
+
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/default.css" />
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
+
+
+        <h:body>
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+                </p:layoutUnit>
+
+                <p:layoutUnit id="bottom" position="south" size="60">
+                </p:layoutUnit>
+
+                <p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="200">
+					<h:form>
+						<p:accordionPanel value="#{menuController.menus}" var="menu">
+							<p:tab title="#{menu.group}">
+								<ul>
+									<ui:repeat value="#{menu.subMenu}" var="subMenu">
+										<p:commandLink ajax="true" oncomplete="updateTabView()">
+											<f:setPropertyActionListener target="#{tabViewController.label}"
+												value="#{subMenu.label}" />
+											<f:setPropertyActionListener target="#{tabViewController.url}"
+												value="#{subMenu.url}" />
+											<f:setPropertyActionListener target="#{tabViewController.tabID}"
+												value="#{subMenu.tabID}" />
+				
+											<h:outputText value="#{subMenu.label}" />
+				
+										</p:commandLink>
+										<br />
+									</ui:repeat>
+								</ul>
+								
+								<p:remoteCommand name="updateTabView" update=":tabView"></p:remoteCommand>
+							</p:tab>
+						</p:accordionPanel>
+					</h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="right" position="east" size="250" header="Gallery" resizable="true" closable="true" collapsible="true" style="text-align:center">
+                <h:form>
+					 <p:themeSwitcher value="#{themeSwitcherBean.theme}" style="width:150px" effect="fade">
+						<f:selectItem itemLabel="Choose Theme" itemValue="" />
+						<f:selectItems value="#{themeSwitcherBean.themes}" />
+						<p:ajax listener="#{themeSwitcherBean.saveTheme}" />
+					 </p:themeSwitcher>
+                </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+
+
+					<p:tabView id="tabView"	activeIndex="#{tabViewController.activeIndex}"	style="heigth:100%;">
+						<p:ajax event="tabClose" listener="#{tabViewController.onTabClose}" />  
+						<p:ajax event="tabChange" listener="#{tabViewController.onTabChange}" />
+
+						<c:forEach items="#{tabViewController.tabList}" var="tabItem">  
+							<p:tab title="#{tabItem.title}" id="#{tabItem.id}">  
+								<ui:include src="http://#{request.serverName}:#{request.serverPort}#{request.contextPath}/#{tabItem.url}" />  
+							</p:tab>  
+						</c:forEach> 
+					</p:tabView>
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+
+        </h:body>
+
+    </f:view>
+</html>
